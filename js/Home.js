@@ -195,7 +195,7 @@ async function allList() {
                 const imageUrl = item.img_url ? `/uploads/${item.img_url}` : "default.jpg";
 
                 document.getElementById("produts-cards").innerHTML += `
-                <div class="product-card" onclick="location.href = 'products.html#${item.product_id}'">
+                <div class="product-card" onclick="location.href = '../products.html#${item.product_id}'">
                 <img src="${imageUrl}" 
                      alt="${item.brand}" 
                      class="product-image">
@@ -237,7 +237,7 @@ async function addToCart(event, productId, quantity = 1) {
         }
 
         // Add or update the product in the cart
-        const response = await fetch("index.html/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json" 
@@ -260,7 +260,7 @@ async function addToCart(event, productId, quantity = 1) {
 
 async function getCart() {
     try {
-        const response = await fetch("index.html/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "GET",
             credentials: "include",
         });
@@ -288,7 +288,7 @@ function renderCart(cartItems) {
         `;
 
         document.querySelector(".shop-all-btn").addEventListener("click", () => {
-            window.location.href = "/shop";
+            window.location.href = "shop";
         });
 
         return;
@@ -365,7 +365,7 @@ function renderCart(cartItems) {
 
 async function removeCartItem(productId) {
     try {
-        const response = await fetch(`index.html/api/cart/${productId}`, {
+        const response = await fetch(`/api/cart/${productId}`, {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("user"),
@@ -386,7 +386,7 @@ async function removeCartItem(productId) {
 
 async function updateCartItem(productId, quantity) {
     try {
-        const response = await fetch("index.html/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

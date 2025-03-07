@@ -8,7 +8,7 @@ async function login() {
 
   console.log(email, password);
 
-  const res = await fetch('index.html/api/Login', {
+  const res = await fetch('/api/Login', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -24,7 +24,7 @@ async function login() {
   
 
     alert("Sikeres bejelentkezés!");
-    window.location.href = '../html/Home.html'; // Redirect to profile
+    window.location.href = '../Home.html'; // Redirect to profile
   } else if (data.errors) {
     let errorMessage = '';
     for (let i = 0; i < data.errors.length; i++) {

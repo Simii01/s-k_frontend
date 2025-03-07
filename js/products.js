@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let searchResultContainer = document.querySelector(".search-result");
 
         if (searchTerm.length > 0) {
-            fetch(`index.html/api/search?q=${encodeURIComponent(searchTerm)}`)
+            fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     searchResultContainer.innerHTML = ""; // Clear previous results
@@ -162,7 +162,7 @@ window.onload = () => {
 // Add to cart function
 async function addToCart(productId, quantity = 1) {
     try {
-        let cartItems = await fetch("index.html/api/cart", { method: "GET", credentials: "include" })
+        let cartItems = await fetch("/api/cart", { method: "GET", credentials: "include" })
             .then(res => res.json());
 
         let existingItem = cartItems.find(item => item.product_id === productId);
@@ -171,7 +171,7 @@ async function addToCart(productId, quantity = 1) {
             quantity += existingItem.quantity; // Ha már van benne, növeljük az értéket
         }
 
-        const response = await fetch("index.html/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ product_id: productId, quantity }),
@@ -192,7 +192,7 @@ async function addToCart(productId, quantity = 1) {
 
 async function getCart() {
     try {
-        const response = await fetch("index.html/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "GET",
             credentials: "include",
         });
@@ -220,7 +220,7 @@ function renderCart(cartItems) {
         `;
 
         document.querySelector(".shop-all-btn").addEventListener("click", () => {
-            window.location.href = "/shop";
+            window.location.href = "../home.html";
         });
 
         return;
@@ -297,7 +297,7 @@ function renderCart(cartItems) {
 
 async function removeCartItem(productId) {
     try {
-        const response = await fetch(`index.html/api/cart/${productId}`, {
+        const response = await fetch(`/api/cart/${productId}`, {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("user"),
@@ -318,7 +318,7 @@ async function removeCartItem(productId) {
 
 async function updateCartItem(productId, quantity) {
     try {
-        const response = await fetch("index.html/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -348,13 +348,13 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("Product ID not found in URL.");
         alert("Product ID is missing. Redirecting to the main page.");
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     }
 });
 
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`index.html/api/product/${productId}`, { credentials: 'include' });
+        const response = await fetch(`/api/product/${productId}`, { credentials: 'include' });
 
         if (!response.ok) {
             const errorData = await response.json();
@@ -397,7 +397,7 @@ document.getElementById('product-sizes').addEventListener('click', function (eve
 async function updateProductVariant(color = null, size = null) {
     const productId = location.hash.slice(1);
     try {
-        const response = await fetch(`index.html/api/product_variant/${productId}?color=${color || ''}&size=${size || ''}`);
+        const response = await fetch(`/api/product_variant/${productId}?color=${color || ''}&size=${size || ''}`);
         if (!response.ok) throw new Error("Failed to fetch variant data");
 
         const product = await response.json();

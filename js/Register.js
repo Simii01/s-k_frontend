@@ -14,20 +14,20 @@ async function register() {
     }
 
     
-    const res = await fetch('index.html/api/Register', {
+    const res = await fetch('/api/Register', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify({ username, email, password })
     });
-
+    console.log(res);
     const data = await res.json();
     console.log(data);
     
     if (res.ok) {
         alert(data.message);
-        window.location.href = '../html/index.html';
+        window.location.href = '../index.html';
     } else if (data.errors) {
         let errorMessage = '';
         for (let i = 0; i < data.errors.length; i++) {
