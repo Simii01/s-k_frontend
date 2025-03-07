@@ -15,7 +15,7 @@ const updateEmail = async (newEmail, password) => {
         return;
     }
 
-    const response = await fetch("http://127.0.0.1:3000/api/editProfileEmail", {
+    const response = await fetch("/api/editProfileEmail", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
