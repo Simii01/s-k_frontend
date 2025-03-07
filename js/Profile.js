@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadProfileData(){
-    const res = await fetch('index.html/api/Profile', {
+    const res = await fetch('/api/Profile', {
         method: 'GET',
         credentials: 'include'
     })
@@ -14,17 +14,17 @@ async function loadProfileData(){
     if(res.ok){
         document.getElementById("username").value = data[0].username || "";
         document.getElementById("email").value = data[0].email || "";
-        document.getElementById("profile-picture").style.background = `url(http://localhost:3000/uploads/${data[0].profile_picture}) no-repeat center/cover`;
+        document.getElementById("profile-picture").style.background = `url(/uploads/${data[0].profile_picture}) no-repeat center/cover`;
     }
     else {
         alert(data.error)
-        location.replace("index.html")
+        location.replace("../index.html")
     }
 }
 
 // Logout Functionality
 document.getElementById("btnLogout").addEventListener("click", async () => {
-    await fetch("index.html/api/Logout", { method: "POST", credentials: "include" });
-    window.location.href = "../html/index.html"; // Redirect to login
+    await fetch("api/Logout", { method: "POST", credentials: "include" });
+    window.location.href = "../index.html"; // Redirect to login
 });
 

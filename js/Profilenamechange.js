@@ -15,7 +15,7 @@ async function editProfileName() {
         return alert('A két felhasználónév nem egyezik!');
     }
 
-    const res = await fetch('index.html/api/editProfileUsername', {
+    const res = await fetch('/api/editProfileUsername', {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -29,7 +29,7 @@ async function editProfileName() {
     
     if (res.ok) {
         alert(data.message || 'Sikeres felhasználónév válzoztatás!');
-        window.location.href = '../html/Profile.html';
+        window.location.href = '../Profile.html';
     } else {
         alert(data.error);
     }
