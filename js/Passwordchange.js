@@ -15,7 +15,7 @@ async function editProfilePassword() {
         return alert('A két jelszó nem egyezik!');
     }
 
-    const res = await fetch('http://127.0.0.1:3000/api/editProfilePassword', {
+    const res = await fetch('index.html/api/editProfilePassword', {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -36,7 +36,7 @@ async function editProfilePassword() {
 }
 
 async function logout() {
-    const res = await fetch('http://127.0.0.1:3000/api/Logout', {
+    const res = await fetch('index.html/api/Logout', {
         method: 'POST',
         credentials: 'include'
     });
@@ -45,7 +45,7 @@ async function logout() {
 
     if (res.ok) {
         alert(data.message);
-        window.location.href = '../html/Login.html';
+        window.location.href = '../html/index.html';
     } else {
         alert('Hiba a kijelentkezéskor');
     }

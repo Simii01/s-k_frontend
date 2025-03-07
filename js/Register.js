@@ -14,7 +14,7 @@ async function register() {
     }
 
     
-    const res = await fetch('http://127.0.0.1:3000/api/Register', {
+    const res = await fetch('index.html/api/Register', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -27,7 +27,7 @@ async function register() {
     
     if (res.ok) {
         alert(data.message);
-        window.location.href = '../html/Login.html';
+        window.location.href = '../html/index.html';
     } else if (data.errors) {
         let errorMessage = '';
         for (let i = 0; i < data.errors.length; i++) {
