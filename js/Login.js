@@ -8,7 +8,7 @@ async function login() {
 
   console.log(email, password);
 
-  const res = await fetch('http://127.0.0.1:3000/api/Login', {
+  const res = await fetch('index.html/api/Login', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'

@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let searchResultContainer = document.querySelector(".search-result");
 
         if (searchTerm.length > 0) {
-            fetch(`http://127.0.0.1:3000/api/search?q=${encodeURIComponent(searchTerm)}`)
+            fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     searchResultContainer.innerHTML = ""; // Clear previous results
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.forEach((product) => {
                         let productHTML = `
                             <div class="search-item">
-                                <img src="http://127.0.0.1:3000/uploads/${product.img_url}" alt="${product.name}" class="search-item-img" />
+                                <img src="/${product.img_url}" alt="${product.name}" class="search-item-img" />
                                 <div class="search-item-info">
                                     <span class="category">${product.category}</span>
                                     <p class="name">${product.brand} | ${product.size} | ${product.color}</p>
@@ -174,7 +174,7 @@ document.querySelectorAll('[id$="-link"]').forEach((link) => {
 // Fetch and display products based on query
 async function allList() {
     try {
-        const res = await fetch(`http://127.0.0.1:3000/api/listing?${query !== "" ? `type=${query}` : ""}`, {
+        const res = await fetch(`/api/listing?${query !== "" ? `type=${query}` : ""}`, {
             method: "GET",
             credentials: "include",
         });
@@ -192,7 +192,7 @@ async function allList() {
 
         if (Array.isArray(data)) {
             data.forEach((item) => {
-                const imageUrl = item.img_url ? `http://127.0.0.1:3000/uploads/${item.img_url}` : "default.jpg";
+                const imageUrl = item.img_url ? `/uploads/${item.img_url}` : "default.jpg";
 
                 document.getElementById("produts-cards").innerHTML += `
                 <div class="product-card" onclick="location.href = 'products.html#${item.product_id}'">
@@ -223,7 +223,7 @@ async function addToCart(event, productId, quantity = 1) {
 
     try {
         // Fetch the current cart items
-        let cartItems = await fetch("http://127.0.0.1:3000/api/cart", { 
+        let cartItems = await fetch("/api/cart", { 
             method: "GET", 
             credentials: "include" 
         }).then(res => res.json());
@@ -237,7 +237,7 @@ async function addToCart(event, productId, quantity = 1) {
         }
 
         // Add or update the product in the cart
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("index.html/api/cart", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json" 
@@ -260,7 +260,7 @@ async function addToCart(event, productId, quantity = 1) {
 
 async function getCart() {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("index.html/api/cart", {
             method: "GET",
             credentials: "include",
         });
@@ -303,7 +303,7 @@ function renderCart(cartItems) {
         cartContent.innerHTML += `
             <div class="cart-item" data-id="${item.product_id}">
                 <div class="cart-item-container">
-                    <img class="cart-item-img" src="http://127.0.0.1:3000/uploads/${item.img_url}" alt="${item.product_name}">
+                    <img class="cart-item-img" src="index.html/uploads/${item.img_url}" alt="${item.product_name}">
                     <div class="cart-item-info">
                         <p class="cart-item-category">Shirt</p>
                         <h4 class="cart-item-name">${item.product_name} | ${item.size ? item.size : "N/A"}</h4>
@@ -365,7 +365,7 @@ function renderCart(cartItems) {
 
 async function removeCartItem(productId) {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/cart/${productId}`, {
+        const response = await fetch(`index.html/api/cart/${productId}`, {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("user"),
@@ -386,7 +386,7 @@ async function removeCartItem(productId) {
 
 async function updateCartItem(productId, quantity) {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("index.html/api/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

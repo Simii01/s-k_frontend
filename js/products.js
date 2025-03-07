@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let searchResultContainer = document.querySelector(".search-result");
 
         if (searchTerm.length > 0) {
-            fetch(`http://127.0.0.1:3000/api/search?q=${encodeURIComponent(searchTerm)}`)
+            fetch(`index.html/api/search?q=${encodeURIComponent(searchTerm)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     searchResultContainer.innerHTML = ""; // Clear previous results
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.forEach((product) => {
                         let productHTML = `
                             <div class="search-item">
-                                <img src="http://127.0.0.1:3000/uploads/${product.img_url}" alt="${product.name}" class="search-item-img" />
+                                <img src="index.html/uploads/${product.img_url}" alt="${product.name}" class="search-item-img" />
                                 <div class="search-item-info">
                                     <span class="category">${product.category}</span>
                                     <p class="name">${product.brand} | ${product.size} | ${product.color}</p>
@@ -162,7 +162,7 @@ window.onload = () => {
 // Add to cart function
 async function addToCart(productId, quantity = 1) {
     try {
-        let cartItems = await fetch("http://127.0.0.1:3000/api/cart", { method: "GET", credentials: "include" })
+        let cartItems = await fetch("index.html/api/cart", { method: "GET", credentials: "include" })
             .then(res => res.json());
 
         let existingItem = cartItems.find(item => item.product_id === productId);
@@ -171,7 +171,7 @@ async function addToCart(productId, quantity = 1) {
             quantity += existingItem.quantity; // Ha már van benne, növeljük az értéket
         }
 
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("index.html/api/cart", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ product_id: productId, quantity }),
@@ -192,7 +192,7 @@ async function addToCart(productId, quantity = 1) {
 
 async function getCart() {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("index.html/api/cart", {
             method: "GET",
             credentials: "include",
         });
@@ -235,7 +235,7 @@ function renderCart(cartItems) {
         cartContent.innerHTML += `
             <div class="cart-item" data-id="${item.product_id}">
                 <div class="cart-item-container">
-                    <img class="cart-item-img" src="http://127.0.0.1:3000/uploads/${item.img_url}" alt="${item.product_name}">
+                    <img class="cart-item-img" src="index.html/uploads/${item.img_url}" alt="${item.product_name}">
                     <div class="cart-item-info">
                         <p class="cart-item-category">Shirt</p>
                         <h4 class="cart-item-name">${item.product_name} | ${item.size ? item.size : "N/A"}</h4>
@@ -297,7 +297,7 @@ function renderCart(cartItems) {
 
 async function removeCartItem(productId) {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/cart/${productId}`, {
+        const response = await fetch(`index.html/api/cart/${productId}`, {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("user"),
@@ -318,7 +318,7 @@ async function removeCartItem(productId) {
 
 async function updateCartItem(productId, quantity) {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("index.html/api/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/product/${productId}`, { credentials: 'include' });
+        const response = await fetch(`index.html/api/product/${productId}`, { credentials: 'include' });
 
         if (!response.ok) {
             const errorData = await response.json();
@@ -397,7 +397,7 @@ document.getElementById('product-sizes').addEventListener('click', function (eve
 async function updateProductVariant(color = null, size = null) {
     const productId = location.hash.slice(1);
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/product_variant/${productId}?color=${color || ''}&size=${size || ''}`);
+        const response = await fetch(`index.html/api/product_variant/${productId}?color=${color || ''}&size=${size || ''}`);
         if (!response.ok) throw new Error("Failed to fetch variant data");
 
         const product = await response.json();

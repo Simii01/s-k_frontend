@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadProfileData(){
-    const res = await fetch('http://127.0.0.1:3000/api/Profile', {
+    const res = await fetch('index.html/api/Profile', {
         method: 'GET',
         credentials: 'include'
     })
@@ -18,13 +18,13 @@ async function loadProfileData(){
     }
     else {
         alert(data.error)
-        location.replace("Login.html")
+        location.replace("index.html")
     }
 }
 
 // Logout Functionality
 document.getElementById("btnLogout").addEventListener("click", async () => {
-    await fetch("http://127.0.0.1:3000/api/Logout", { method: "POST", credentials: "include" });
-    window.location.href = "../html/Login.html"; // Redirect to login
+    await fetch("index.html/api/Logout", { method: "POST", credentials: "include" });
+    window.location.href = "../html/index.html"; // Redirect to login
 });
 
