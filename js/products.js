@@ -371,24 +371,32 @@ async function fetchProductDetails(productId) {
         document.getElementById('product-name').textContent = product.product_name || "N/A";
         document.getElementById('product-price').textContent = product.price ? `${product.price}$` : "N/A";
         
-        const sizesContainer = document.getElementById('product-sizes');
-        const sizes = product.size ? product.size.split(',') : [];
-        sizesContainer.innerHTML = sizes.map(size => `<button>${size.trim()}</button>`).join('');
-
-        const colorsSelect = document.getElementById('product-colors');
-        const colors = product.color ? product.color.split(',') : [];
-        colorsSelect.innerHTML = colors.map(color => `<option>${color.trim()}</option>`).join('');
+        updateSize(product.size, product.is_in_stock);
+        updateColors(product.color);
     } catch (error) {
         console.error('Error fetching product details:', error);
         alert("An error occurred. Please try again later.");
     }
 }
 
+function updateSize(size, isInStock) {
+    const sizeContainer = document.getElementById('product-size');
+    sizeContainer.innerHTML = size.split(',').map(size => {
+        const isDisabled = !isInStock.includes(size.trim());
+        return `<button ${isDisabled ? 'disabled' : ''}>${size.trim()}</button>`;
+    }).join('');
+}
+
+function updateColors(colors) {
+    const colorsSelect = document.getElementById('product-colors');
+    colorsSelect.innerHTML = colors.split(',').map(color => `<option>${color.trim()}</option>`).join('');
+}
+
 document.getElementById('product-colors').addEventListener('change', function () {
     updateProductVariant(this.value, null);
 });
 
-document.getElementById('product-sizes').addEventListener('click', function (event) {
+document.getElementById('product-size').addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON' && !event.target.disabled) {
         updateProductVariant(null, event.target.textContent);
     }
@@ -404,44 +412,8 @@ async function updateProductVariant(color = null, size = null) {
         document.getElementById('product-image').src = product.img_url || "default.jpg";
         document.getElementById('product-name').textContent = product.product_name || "N/A";
         document.getElementById('product-price').textContent = product.price ? `${product.price}$` : "N/A";
+        updateSize(product.size, product.is_in_stock);
     } catch (error) {
         console.error("Error updating product variant:", error);
     }
 }
-
-app.get("/api/product/:product_id", authenticateToken, (req, res) => {
-    const productId = req.params.product_id;
-
-    if (!productId || isNaN(productId)) {
-        return res.status(400).json({ error: "Invalid product ID." });
-    }
-
-    const sql = `
-        SELECT 
-            p.product_id, 
-            p.brand, 
-            p.category, 
-            p.size, 
-            p.color, 
-            p.product_name, 
-            p.price, 
-            p.is_in_stock, 
-            pi.img_url
-        FROM products p
-        LEFT JOIN products_images pi ON p.product_id = pi.product_id
-        WHERE p.product_id = ?
-    `;
-
-    pool.query(sql, [productId], (err, result) => {
-        if (err) {
-            console.error("SQL error:", err);
-            return res.status(500).json({ error: "Database error.", details: err.message });
-        }
-
-        if (result.length === 0) {
-            return res.status(404).json({ error: "Product not found." });
-        }
-
-        res.status(200).json(result[0]);
-    });
-});
