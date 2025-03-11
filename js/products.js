@@ -354,7 +354,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`/api/product/${productId}`, { credentials: 'include' });
+        const response = await fetch(`/api/product/${productId}`, { 
+            method: 'GET',
+            credentials: 'include' });
 
         if (!response.ok) {
             const errorData = await response.json();
@@ -365,6 +367,7 @@ async function fetchProductDetails(productId) {
 
         const product = await response.json();
         console.log("Fetched Product Data:", product);
+        const images = document.getElementById('images');
 
         document.getElementById('product-image').src = product.img_url ? product.img_url : "default.jpg";
         document.getElementById('product-image').alt = product.product_name || "Product Image";
