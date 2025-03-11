@@ -372,7 +372,7 @@ async function fetchProductDetails(productId) {
         document.getElementById('product-image').src = product.img_url ? product.img_url : "default.jpg";
         document.getElementById('product-image').alt = product.product_name || "Product Image";
         document.getElementById('product-name').textContent = product.product_name || "N/A";
-        document.getElementById('product-price').textContent = product.price ? `${product.price}$` : "N/A";
+        document.getElementById('product-price').textContent = product.price ? `${product.price}$` : "N/A"; 
         
         updateSize(product.size, product.is_in_stock);
         updateColors(product.color);
