@@ -372,12 +372,12 @@ async function fetchProductDetails(productId) {
         const details = document.getElementById('details');
 
         const detailsH1 = document.createElement('h1');
-        detailsH1.textContent = product[0].product_name;
+        detailsH1.textContent = product.product_name;
 
         const detailsPrice = document.createElement('p');
         detailsPrice.classList.add('price');
         detailsPrice.id = 'product-price';
-        detailsPrice.textContent = `${product[0].price}$`;
+        detailsPrice.textContent = `${product.price}$`;
 
         const detailsTax = document.createElement('p');
         detailsTax.classList.add('tax');
@@ -386,17 +386,17 @@ async function fetchProductDetails(productId) {
         const sizeDiv = document.createElement('div');
         sizeDiv.classList.add('size');
         sizeDiv.id = 'product-size';
-        sizeDiv.textContent = product[0].size;
+        sizeDiv.textContent = product.size;
         
         const colorSelect = document.createElement('select');
         colorSelect.classList.add('color');
         colorSelect.id = 'product-colors';
         const colorOption = document.createElement('option');
-        colorOption.value = product[0].color;
-        colorOption.textContent = product[0].color;
+        colorOption.value = product.color;
+        colorOption.textContent = product.color;
         colorSelect.append(colorOption);
 
-        const addToCartButton = document.createAttribute('button');
+        const addToCartButton = document.createElement('button');
         addToCartButton.classList.add('add-to-cart');
         addToCartButton.textContent = 'ADD TO CART';
 
