@@ -367,6 +367,8 @@ async function fetchProductDetails(productId) {
 
         const product = await response.json();
         console.log("Fetched Product Data:", product);
+        console.log(product.product_name);
+        
         const details = document.getElementById('details');
 
         const detailsH1 = document.createElement('h1');
