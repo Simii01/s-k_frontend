@@ -367,8 +367,40 @@ async function fetchProductDetails(productId) {
 
         const product = await response.json();
         console.log("Fetched Product Data:", product);
-        const images = document.getElementById('images');
+        const details = document.getElementById('details');
 
+        const detailsH1 = document.createElement('h1');
+        detailsH1.textContent = product.product_name;
+
+        const detailsPrice = document.createElement('p');
+        detailsPrice.classList.add('price');
+        detailsPrice.id = 'product-price';
+        detailsPrice.textContent = `${product.price}$`;
+
+        const detailsTax = document.createElement('p');
+        detailsTax.classList.add('tax');
+        detailsTax.textContent = 'Tax included';
+
+        const sizeDiv = document.createElement('div');
+        sizeDiv.classList.add('size');
+        sizeDiv.id = 'product-size';
+        sizeDiv.textContent = product.size;
+        
+        const colorSelect = document.createElement('select');
+        colorSelect.classList.add('color');
+        colorSelect.id = 'product-colors';
+        const colorOption = document.createElement('option');
+        colorOption.value = product.color;
+        colorOption.textContent = product.color;
+        colorSelect.append(colorOption);
+
+        const addToCartButton = document.createAttribute('button');
+        addToCartButton.classList.add('add-to-cart');
+        addToCartButton.textContent = 'ADD TO CART';
+
+        details.append(detailsH1, detailsPrice, detailsTax, sizeDiv, colorSelect, addToCartButton);
+
+        /*
         document.getElementById('product-image').src = product.img_url ? product.img_url : "default.jpg";
         document.getElementById('product-image').alt = product.product_name || "Product Image";
         document.getElementById('product-name').textContent = product.product_name || "N/A";
@@ -376,6 +408,7 @@ async function fetchProductDetails(productId) {
         
         updateSize(product.size, product.is_in_stock);
         updateColors(product.color);
+        */
     } catch (error) {
         console.error('Error fetching product details:', error);
         alert("An error occurred. Please try again later.");
