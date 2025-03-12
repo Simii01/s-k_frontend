@@ -394,6 +394,7 @@ async function fetchProductDetails(productId) {
         const colorOption = document.createElement('option');
         colorOption.value = `${product.color}`;
         colorOption.textContent = `${product.color}`;
+        
         colorSelect.append(colorOption);
 
         const addToCartButton = document.createElement('button');
@@ -401,6 +402,14 @@ async function fetchProductDetails(productId) {
         addToCartButton.textContent = 'ADD TO CART';
 
         details.append(detailsH1, detailsPrice, detailsTax, sizeDiv, colorSelect, addToCartButton);
+
+        const images = [product.img1, product.img2, product.img3].filter(img => img !== null);
+
+        if (images.length === 0) {
+            images.push("./images/default.jpg"); // Ha nincs kép, alapértelmezett
+        }
+
+        startCarousel(images);
 
         /*
         document.getElementById('product-image').src = product.img_url ? product.img_url : "default.jpg";
@@ -415,6 +424,22 @@ async function fetchProductDetails(productId) {
         console.error('Error fetching product details:', error);
         alert("An error occurred. Please try again later.");
     }
+}
+
+function startCarousel(images) {
+    let index = 0;
+    const carouselImage = document.getElementById('carousel-image');
+
+    function changeImage() {
+        index = (index + 1) % images.length;
+        carouselImage.style.opacity = 0; // Áttűnés kezdet
+        setTimeout(() => {
+            carouselImage.src = images[index];
+            carouselImage.style.opacity = 1; // Áttűnés vége
+        }, 500);
+    }
+
+    setInterval(changeImage, 5000); // 5 másodpercenként váltás
 }
 
 function updateSize(size, isInStock) {
