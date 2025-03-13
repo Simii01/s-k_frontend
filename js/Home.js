@@ -301,7 +301,7 @@ function renderCart(cartItems) {
         total += item.price * item.quantity;
 
         cartContent.innerHTML += `
-            <div class="cart-item" data-id="${item.product_id}">
+            <div class="cart-item" data-id="${item.product_id}">  
                 <div class="cart-item-container">
                     <img class="cart-item-img" src="index.html/uploads/${item.img_url}" alt="${item.product_name}">
                     <div class="cart-item-info">

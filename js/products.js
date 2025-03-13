@@ -354,7 +354,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`/api/product/${productId}`, { credentials: 'include' });
+        const response = await fetch(`/api/product/${productId}`, { 
+            method: 'GET',
+            credentials: 'include' });
 
         if (!response.ok) {
             const errorData = await response.json();
