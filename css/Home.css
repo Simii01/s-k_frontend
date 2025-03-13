@@ -650,10 +650,27 @@ body {
     display: block;
 }
 
-.cart-total{
+.cart-footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: black;
     color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.cart-total {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#checkout-btn {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
 }
