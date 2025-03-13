@@ -661,8 +661,8 @@ body {
 }
 
 .cart-total {
-    margin-bottom: 10px;
-    font-size: 1.2em;
+    position: fixed;
+    top: 700;
 }
 
 #checkout-btn {
