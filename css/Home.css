@@ -651,9 +651,6 @@ body {
 }
 
 .cart-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     background-color: black;
     color: white;
     padding: 10px;
@@ -661,8 +658,8 @@ body {
 }
 
 .cart-total {
-    position: fixed;
-    top: 700;
+    margin-bottom: 10px;
+    font-size: 1.2em;
 }
 
 #checkout-btn {
