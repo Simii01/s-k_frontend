@@ -192,7 +192,7 @@ async function allList() {
 
         if (Array.isArray(data)) {
             data.forEach((item) => {
-                const imageUrl = item.img_url ? `/uploads/${item.img_url}` : '/uploads/default.png';
+                const imageUrl = item.img_url ? `/uploads/${item.img_url}` : "default.jpg";
 
                 document.getElementById("produts-cards").innerHTML += `
                 <div class="product-card" onclick="location.href = '../products.html#${item.product_id}'">
