@@ -321,10 +321,12 @@ function renderCart(cartItems) {
     });
 
     cartContent.innerHTML += `
-        <div class="cart-total">
+    <div class="cart-footer">   
+    <div class="cart-total">
             <span>Total: ${total}$</span>
         </div>
         <button id="checkout-btn">Checkout</button>
+        </div>
     `;
 
     document.getElementById("checkout-btn").addEventListener("click", () => {
