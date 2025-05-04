@@ -15,7 +15,7 @@ async function editProfilePassword() {
         return alert('A két jelszó nem egyezik!');
     }
 
-    const res = await fetch('http://127.0.0.1:3000/api/editProfilePassword', {
+    const res = await fetch('/api/editProfilePassword', {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -36,7 +36,7 @@ async function editProfilePassword() {
 }
 
 async function logout() {
-    const res = await fetch('http://127.0.0.1:3000/api/Logout', {
+    const res = await fetch('/api/Logout', {
         method: 'POST',
         credentials: 'include'
     });

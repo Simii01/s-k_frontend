@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch(`http://127.0.0.1:3000/api/search?q=${encodeURIComponent(searchTerm)}`, {
+        fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`, {
             credentials: "include",
         })
             .then((res) => res.json())
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 data.forEach((product) => {
-                    const imageUrl = product.img_url ? `http://127.0.0.1:3000/uploads/${product.img_url}` : "http://127.0.0.1:3000/uploads/default.jpg";
+                    const imageUrl = product.img_url ? `/uploads/${product.img_url}` : "/uploads/default.jpg";
 
                     const productHTML = `
                 <div class="search-item" onclick="window.location.href='products.html#${product.product_id}'">
@@ -162,7 +162,7 @@ async function addToCart(event, productId) {
     event.stopPropagation();
 
     try {
-        const cartItems = await fetch("http://127.0.0.1:3000/api/cart", {
+        const cartItems = await fetch("/api/cart", {
             method: "GET",
             credentials: "include",
         }).then((res) => res.json());
@@ -175,7 +175,7 @@ async function addToCart(event, productId) {
             newQuantity = existingItem.quantity + 1;
         }
 
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -201,7 +201,7 @@ async function addToCart(event, productId) {
 
 async function getCart() {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "GET",
             credentials: "include",
         });
@@ -256,7 +256,7 @@ function renderCart(cartItems) {
         cartContent.innerHTML += `
             <div class="cart-item" data-id="${item.product_id}">  
                 <div class="cart-item-container">
-                    <img class="cart-item-img" src="http://127.0.0.1:3000/uploads/${item.img_url}" alt="${item.product_name}">
+                    <img class="cart-item-img" src="/uploads/${item.img_url}" alt="${item.product_name}">
                     <div class="cart-item-info">
                         <p class="cart-item-category">Shirt</p>
                         <h4 class="cart-item-name">${item.product_name} | ${item.size ? item.size : ""}</h4>
@@ -317,7 +317,7 @@ function renderCart(cartItems) {
 
 async function removeCartItem(productId) {
     try {
-        const response = await fetch(`http://127.0.0.1:3000/api/cart/${productId}`, {
+        const response = await fetch(`/api/cart/${productId}`, {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("user"),
@@ -337,7 +337,7 @@ async function removeCartItem(productId) {
 
 async function updateCartItem(productId, quantity) {
     try {
-        const response = await fetch("http://127.0.0.1:3000/api/cart", {
+        const response = await fetch("/api/cart", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -358,8 +358,8 @@ async function updateCartItem(productId, quantity) {
     }
 }
 
-const BASE_URL = "http://127.0.0.1:3000";
-const API_URL = `${BASE_URL}/api`;
+//const BASE_URL = "http://127.0.0.1:3000";
+//const API_URL = `/api`;
 
 document.addEventListener("DOMContentLoaded", () => {
     const productId = location.hash.slice(1) || new URLSearchParams(window.location.search).get("id");
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`${API_URL}/product/${productId}`, {
+        const response = await fetch(`/api/product/${productId}`, {
             method: "GET",
             credentials: "include",
         });
@@ -406,12 +406,12 @@ async function fetchProductDetails(productId) {
       `;
 
         const images = [data.img1, data.img2, data.img3].filter(Boolean);
-        carousel.src = `${BASE_URL}/uploads/${images[0] || "default.jpg"}`;
+        carousel.src = `/api/uploads/${images[0] || "default.jpg"}`;
         startCarousel(images);
 
         document.querySelector(".add-cart-btn").addEventListener("click", async () => {
             try {
-                const cartItems = await fetch(`${API_URL}/cart`, {
+                const cartItems = await fetch(`/api/cart`, {
                     method: "GET",
                     credentials: "include",
                 }).then((res) => res.json());
@@ -423,7 +423,7 @@ async function fetchProductDetails(productId) {
                     quantity = existingItem.quantity + 1;
                 }
 
-                const response = await fetch(`${API_URL}/cart`, {
+                const response = await fetch(`/api/cart`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     credentials: "include",
@@ -444,7 +444,7 @@ async function fetchProductDetails(productId) {
             }
         });
 
-        const variantRes = await fetch(`${API_URL}/variants/${data.product_id}`, {
+        const variantRes = await fetch(`/api/variants/${data.product_id}`, {
             credentials: "include",
         });
         const variants = await variantRes.json();
@@ -514,7 +514,7 @@ function startCarousel(images) {
         index = (index + 1) % images.length;
         carouselImage.style.opacity = 0;
         setTimeout(() => {
-            carouselImage.src = `${BASE_URL}/uploads/${images[index]}`;
+            carouselImage.src = `/api/uploads/${images[index]}`;
             carouselImage.style.opacity = 1;
         }, 500);
     }, 5000);
