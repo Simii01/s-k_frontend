@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Clear search button or search input not found!");
     }
 
-    //-----SEARCH RESULTS-----// 
+    //-----SEARCH RESULTS-----//
 
     // Fetch and display search results
     searchInput.addEventListener("input", function () {
