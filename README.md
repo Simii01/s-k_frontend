@@ -223,13 +223,8 @@ Biztonság
 -Visual Studio Code
 
 -Postman
-
 -DrawSQL
-
 -GitHub
-
 -W3Schools
-
 -ChatGPT
-
 
