@@ -44,8 +44,7 @@ Biztonság
 -JWT token alapú hitelesítés
 -Jelszavak bcryptjs segítségével hashelve
 -Middleware szintű autentikáció (auth.middleware.js)
--Érzékeny adatok .env fájlban tárolva – ne töltsd fel nyilvánosan!
-
+-Érzékeny adatok .env fájlban tárolva
 Adatbázis struktúra
 
 users
