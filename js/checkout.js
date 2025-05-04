@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch(`http://127.0.0.1:3000/api/search?q=${encodeURIComponent(searchTerm)}`, {
+        fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`, {
             credentials: "include",
         })
             .then((res) => res.json())
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 data.forEach((product) => {
-                    const imageUrl = product.img_url ? `http://127.0.0.1:3000/uploads/${product.img_url}` : "http://127.0.0.1:3000/uploads/default.jpg";
+                    const imageUrl = product.img_url ? `/uploads/${product.img_url}` : "/uploads/default.jpg";
 
                     const productHTML = `
                 <div class="search-item" onclick="window.location.href='products.html#${product.product_id}'">
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const cartItemsContainer = document.getElementById("checkout-cart-items");
 
         try {
-            const res = await fetch("http://127.0.0.1:3000/api/cart", {
+            const res = await fetch("/api/cart", {
                 method: "GET",
                 credentials: "include",
             });
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         return `
             <div class="checkout-cart-item">
-              <img src="http://127.0.0.1:3000/uploads/${item.img_url}" alt="${item.product_name}" class="checkout-item-img" />
+              <img src="/uploads/${item.img_url}" alt="${item.product_name}" class="checkout-item-img" />
               <div>
                 <p><strong>${item.product_name}</strong> | ${item.size ? item.size : ""}</p>
                 <p>${item.quantity} x ${item.price}$ = ${itemTotal}$</p>
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }));
 
         try {
-            const response = await fetch("http://127.0.0.1:3000/api/checkout", {
+            const response = await fetch("/api/checkout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

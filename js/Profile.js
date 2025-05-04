@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadProfileData() {
-    const res = await fetch("http://127.0.0.1:3000/api/Profile", {
+    const res = await fetch("/api/Profile", {
         method: "GET",
         credentials: "include",
     });
@@ -18,7 +18,7 @@ async function loadProfileData() {
         const profilePictureDiv = document.getElementById("profile-picture");
 
         if (data[0].profile_picture) {
-            profilePictureDiv.style.backgroundImage = `url(http://127.0.0.1:3000/uploads/${data[0].profile_picture})`;
+            profilePictureDiv.style.backgroundImage = `url(/uploads/${data[0].profile_picture})`;
             profilePictureDiv.style.backgroundPosition = "center";
             profilePictureDiv.style.backgroundSize = "cover";
             profilePictureDiv.style.backgroundRepeat = "no-repeat";
@@ -32,7 +32,7 @@ async function loadProfileData() {
 }
 
 document.getElementById("btnLogout").addEventListener("click", async () => {
-    await fetch("http://127.0.0.1:3000/api/Logout", { method: "POST", credentials: "include" });
+    await fetch("/api/Logout", { method: "POST", credentials: "include" });
     window.location.href = "../index.html";
 });
 
@@ -51,7 +51,7 @@ fileUploadInput.addEventListener("change", async (event) => {
     formData.append("profile_picture", file);
 
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/editProfilePic", {
+        const res = await fetch("/api/editProfilePic", {
             method: "PUT",
             body: formData,
             credentials: "include",

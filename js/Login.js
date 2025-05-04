@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-          const res = await fetch('http://127.0.0.1:3000/api/Login', {
+          const res = await fetch('/api/Login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

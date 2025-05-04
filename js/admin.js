@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.editProduct = async (id) => {
         try {
-            const response = await fetch(`http://127.0.0.1:3000/api/admin/products/${id}`, { credentials: "include" });
+            const response = await fetch(`/api/admin/products/${id}`, { credentials: "include" });
             const product = await response.json();
 
             document.getElementById("product-id").value = product.product_id;
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const url = productId ? `http://127.0.0.1:3000/api/admin/products/${productId}` : "http://127.0.0.1:3000/api/admin/products";
+            const url = productId ? `/api/admin/products/${productId}` : "/api/admin/products";
 
             const response = await fetch(url, {
                 method: productId ? "PUT" : "POST",
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const url = userId ? `http://127.0.0.1:3000/api/admin/users/${userId}` : "http://127.0.0.1:3000/api/admin/users";
+            const url = userId ? `/api/admin/users/${userId}` : "/api/admin/users";
 
             const response = await fetch(url, {
                 method: userId ? "PUT" : "POST",
@@ -176,19 +176,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const [productsRes, usersRes, ordersRes] = await Promise.all([
-                fetch("http://127.0.0.1:3000/api/admin/products", {
+                fetch("/api/admin/products", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                     credentials: "include",
                 }),
-                fetch("http://127.0.0.1:3000/api/admin/users", {
+                fetch("/api/admin/users", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                     credentials: "include",
                 }),
-                fetch("http://127.0.0.1:3000/api/admin/orders", {
+                fetch("/api/admin/orders", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("Nincs hitelesítési token");
             }
 
-            const response = await fetch("http://127.0.0.1:3000/api/admin/products", {
+            const response = await fetch("/api/admin/products", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("Nincs hitelesítési token");
             }
 
-            const response = await fetch("http://127.0.0.1:3000/api/admin/users", {
+            const response = await fetch("/api/admin/users", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("Nincs hitelesítési token");
             }
 
-            const response = await fetch("http://127.0.0.1:3000/api/admin/orders", {
+            const response = await fetch("/api/admin/orders", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.deleteProduct = async (id) => {
         if (confirm("Biztosan törölni szeretnéd ezt a terméket?")) {
             try {
-                const response = await fetch(`http://127.0.0.1:3000/api/admin/products/${id}`, {
+                const response = await fetch(`/api/admin/products/${id}`, {
                     method: "DELETE",
                     credentials: "include",
                 });
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.editUser = async (userId) => {
         try {
-            const response = await fetch(`http://127.0.0.1:3000/api/admin/users/${userId}`, {
+            const response = await fetch(`/api/admin/users/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 userData.password = password;
             }
 
-            const response = await fetch(`http://127.0.0.1:3000/api/admin/users/${userId}`, {
+            const response = await fetch(`/api/admin/users/${userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -476,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.deleteUser = async (id) => {
         if (confirm("Biztosan törölni szeretnéd ezt a felhasználót?")) {
             try {
-                const response = await fetch(`http://127.0.0.1:3000/api/admin/users/${id}`, {
+                const response = await fetch(`/api/admin/users/${id}`, {
                     method: "DELETE",
                     credentials: "include",
                 });
@@ -496,7 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.viewOrder = async (orderId) => {
         try {
-            const response = await fetch(`http://127.0.0.1:3000/api/admin/orders/${orderId}`, {
+            const response = await fetch(`/api/admin/orders/${orderId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -577,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.deleteOrder = async (id) => {
         if (confirm("Biztosan törölni szeretnéd ezt a rendelést?")) {
             try {
-                const response = await fetch(`http://127.0.0.1:3000/api/admin/orders/${id}`, {
+                const response = await fetch(`/api/admin/orders/${id}`, {
                     method: "DELETE",
                     credentials: "include",
                 });
