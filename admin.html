@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel</title>
+        <link rel="stylesheet" href="css/admin.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    </head>
+    <body>
+        <div class="admin-container">
+            <nav class="admin-sidebar">
+                <div class="sidebar-header">
+                    <h2>Admin Panel</h2>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="active" data-section="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li data-section="products">
+                        <i class="fas fa-box"></i>
+                        <span>Termékek</span>
+                    </li>
+                    <li data-section="users">
+                        <i class="fas fa-users"></i>
+                        <span>Felhasználók</span>
+                    </li>
+                    <li data-section="orders">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Rendelések</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="admin-main">
+                <header class="admin-header">
+                    <div class="header-left">
+                        <button id="sidebar-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="header-right">
+                        <span id="admin-username"></span>
+                        <button id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Kijelentkezés
+                        </button>
+                    </div>
+                </header>
+
+                <section id="dashboard" class="admin-section active">
+                    <h2>Üdvözöljük az admin panelben!</h2>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-box"></i>
+                            <h3>Termékek</h3>
+                            <p id="total-products">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Felhasználók</h3>
+                            <p id="total-users">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>Rendelések</h3>
+                            <p id="total-orders">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="products" class="admin-section">
+                    <div class="section-header">
+                        <h2>Termékek kezelése</h2>
+                        <button id="add-product-btn" class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Új termék
+                        </button>
+                    </div>
+                    <div class="products-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Név</th>
+                                    <th>Kategória</th>
+                                    <th>Márka</th>
+                                    <th>Ár</th>
+                                    <th>Raktáron</th>
+                                    <th>Műveletek</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="users" class="admin-section">
+                    <div class="section-header">
+                        <h2>Felhasználók kezelése</h2>
+                        <button id="add-user-btn" class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Új felhasználó
+                        </button>
+                    </div>
+                    <div class="users-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Felhasználónév</th>
+                                    <th>Email</th>
+                                    <th>Admin</th>
+                                    <th>Műveletek</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="orders" class="admin-section">
+                    <div class="section-header">
+                        <h2>Rendelések kezelése</h2>
+                    </div>
+                    <div class="orders-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Rendelés ID</th>
+                                    <th>Felhasználó</th>
+                                    <th>Dátum</th>
+                                    <th>Státusz</th>
+                                    <th>Összeg</th>
+                                    <th>Műveletek</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="product-modal-title">Új termék</h2>
+                <form id="product-form">
+                    <input type="hidden" id="product-id" />
+                    <div class="form-group">
+                        <label for="product-name">Termék neve</label>
+                        <input type="text" id="product-name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Kategória</label>
+                        <input type="text" id="product-category" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-brand">Márka</label>
+                        <input type="text" id="product-brand" />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-size">Méret</label>
+                        <input type="text" id="product-size" />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-color">Szín</label>
+                        <input type="text" id="product-color" />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Ár</label>
+                        <input type="number" id="product-price" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-stock">Raktáron</label>
+                        <input type="checkbox" id="product-stock" />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-images">Képek</label>
+                        <input type="file" id="product-images" multiple accept="image/*" />
+                    </div>
+                    <button type="submit" class="btn-primary">Mentés</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="user-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="user-modal-title">Új felhasználó</h2>
+                <form id="user-form">
+                    <input type="hidden" id="user-id" />
+                    <div class="form-group">
+                        <label for="user-username">Felhasználónév</label>
+                        <input type="text" id="user-username" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email">Email</label>
+                        <input type="email" id="user-email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="user-password">Jelszó</label>
+                        <input type="password" id="user-password" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="user-is-admin">Admin</label>
+                        <input type="checkbox" id="user-is-admin" />
+                    </div>
+                    <button type="submit" class="btn-primary">Mentés</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="order-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="order-modal-title">Rendelés részletei</h2>
+                <div id="order-details"></div>
+            </div>
+        </div>
+
+        <script src="js/admin.js"></script>
+    </body>
+</html>

@@ -1,0 +1,163 @@
+* {
+    font-family: "Lustria", serif;
+}
+
+header {
+    width: 100%;
+    height: 95px;
+}
+
+body {
+    font-family: "Lustria", serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button,
+input {
+    font-family: "Lustria", serif;
+}
+.title-sk a {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+}
+.black-frame {
+    font-family: "Lustria", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+}
+
+.white-frame {
+    font-size: 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.form-box {
+    height: 370px;
+    width: 335px;
+    background: #d3d3d3;
+    padding: 40px;
+    box-shadow: 0px 6px 5px #c1c1c1;
+    border: 2px solid #b6b6b6;
+}
+
+h2 {
+    font-weight: 100;
+    margin-top: -12px;
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 304px;
+    padding: 14px;
+    border: 2px solid #b6b6b6;
+    border-radius: 5px;
+    background-color: #ededed;
+}
+
+.btnUsernamechange {
+    background-color: #ededed;
+    color: black;
+    border: 2px solid #b6b6b6;
+    padding: 15px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 80px;
+    font-size: 16px;
+    border-radius: 5px;
+    font-family: "Lustria", serif;
+}
+
+.btnUsernamechange:hover {
+    background-color: #c2c2c2;
+}
+
+.reg-text {
+    color: #45438d;
+    padding: 10px;
+}
+
+.remenberme {
+    position: absolute;
+    padding-top: 10px;
+    justify-content: start;
+}
+
+.Forgot-psw {
+    position: absolute;
+    width: 140px;
+    left: 200px;
+    bottom: 0px;
+}
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .form-box {
+        width: 100% !important;
+        height: auto !important;
+        padding: 20px !important;
+        box-sizing: border-box;
+    }
+
+    .input-group input {
+        width: 100% !important;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    .btnUsernamechange {
+        font-size: 15px;
+        padding: 12px;
+        margin-top: 40px;
+    }
+
+    .black-frame {
+        font-size: 12px;
+        line-height: 1.4;
+        padding: 10px;
+        word-break: break-word;
+        text-align: center;
+    }
+
+    .white-frame {
+        font-size: 28px;
+        padding: 10px 0;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
