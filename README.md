@@ -38,6 +38,9 @@ Használt package-ek
 -multer
 -mysql2
 -validator
+
+
+
 ![image](https://github.com/user-attachments/assets/ebd6d648-297f-4622-89ac-9fa5f5a3edbd)
 
 
