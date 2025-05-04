@@ -217,11 +217,22 @@ Biztonság
 ├── .git/
 │   └── ... 
 
- Használt eszközök
+Egy pár kép a projektről
 
- 
+
+
+![image](https://github.com/user-attachments/assets/c8a347d7-838e-4372-bf38-2fc26c5a7887)
+
+
+![image](https://github.com/user-attachments/assets/5979be68-d336-4cb3-9824-89a2e449061d)
+
+
+![image](https://github.com/user-attachments/assets/4628c688-5554-42a0-9e0f-975eaad5ea0d)
+
+
+ Használt eszközök a projekt elkészítése során
+
 -Visual Studio Code
-
 -Postman
 -DrawSQL
 -GitHub
