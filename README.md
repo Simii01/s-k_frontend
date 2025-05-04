@@ -155,6 +155,12 @@ Rendelés Útvonalak
 - `GET /api/admin/orders/:id`
 - `DELETE /api/admin/orders/:id`
 
+![image](https://github.com/user-attachments/assets/31800657-d5ea-4332-9368-b9957f82905d)
+
+![image](https://github.com/user-attachments/assets/5162efe2-daba-41f3-b0c5-01e2ceb9af07)
+
+![image](https://github.com/user-attachments/assets/ec4c2f41-292f-4f56-8e1c-996fdedd9d76)
+
 Biztonság
 
 - JWT token alapú authentikáció
