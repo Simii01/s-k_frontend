@@ -38,7 +38,8 @@ Használt package-ek
 -multer
 -mysql2
 -validator
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/ebd6d648-297f-4622-89ac-9fa5f5a3edbd)
+
 
 Biztonság
 -JWT token alapú hitelesítés
