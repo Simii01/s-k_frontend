@@ -171,6 +171,8 @@ Biztonság
 - Tranzakciós biztonság az adatbázis műveleteknél
 
 -Frontend
+
+
 ├── admin.html
 ├── Home.html
 ├── checkout.html
